@@ -31,8 +31,4 @@ export const BtnDisabled = styled.button`
   cursor: pointer;
   padding: 2px 10px;
   margin-top: 10px;
-
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
 `;

@@ -7,31 +7,26 @@ import {
 } from './ContactForm.styled';
 
 export function Form({ onData }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const initialState = {
+    name: '',
+    number: '',
+  };
 
-  const handleChange = e => {
-    const { name, value } = e.currentTarget;
+  const [state, setState] = useState({ ...initialState });
+  const { name, number } = state;
 
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    setState(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onData(name, number);
-    setName('');
-    setNumber('');
+    onData({ ...state });
+    setState({ ...initialState });
   };
 
   return (
